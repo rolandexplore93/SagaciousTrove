@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
-namespace SagaciousTrove.Areas.Admin.Controllers
+namespace SagaciousTrove.CoverTypeController
 {
     [Area("Admin")]
     public class CoverTypeController : Controller
@@ -15,10 +15,10 @@ namespace SagaciousTrove.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<CoverType> objCoverTypeList = _unitOfWork.CoverType.GetAll();
-            return View(objCoverTypeList);
+            IEnumerable<CoverType> objCoverTypelist = _unitOfWork.CoverType.GetAll();
+            return View(objCoverTypelist);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -28,14 +28,16 @@ namespace SagaciousTrove.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CoverType obj)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _unitOfWork.CoverType.Add(obj);
-                _unitOfWork.Save();
-                TempData["Success"] = "Cover Type created successfully";
-                return RedirectToAction("Index");
+                return View(obj);
             }
-            return View(obj);
+
+            _unitOfWork.CoverType.Add(obj);
+            _unitOfWork.Save();
+            TempData["Success"] = "CoverType created successfully";
+            return RedirectToAction("Index");
+
         }
 
         [HttpGet]
@@ -46,13 +48,14 @@ namespace SagaciousTrove.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var coverTypeFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
-            if (coverTypeFromDbFirst == null)
+            var CoverTypeFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+
+            if (CoverTypeFromDbFirst == null)
             {
                 NotFound();
             }
 
-            return View(coverTypeFromDbFirst);
+            return View(CoverTypeFromDbFirst);
         }
 
         [HttpPost]
@@ -66,7 +69,7 @@ namespace SagaciousTrove.Areas.Admin.Controllers
 
             _unitOfWork.CoverType.Update(obj);
             _unitOfWork.Save();
-            TempData["Success"] = "Cover Type updated successfully";
+            TempData["Success"] = "CoverType updated successfully";
             return RedirectToAction("Index");
 
         }
@@ -79,13 +82,14 @@ namespace SagaciousTrove.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var coverTypeFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
-            if (coverTypeFromDbFirst == null)
+            var CoverTypeFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+
+            if (CoverTypeFromDbFirst == null)
             {
                 NotFound();
             }
 
-            return View(coverTypeFromDbFirst);
+            return View(CoverTypeFromDbFirst);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -100,9 +104,11 @@ namespace SagaciousTrove.Areas.Admin.Controllers
 
             _unitOfWork.CoverType.Remove(obj);
             _unitOfWork.Save();
-            TempData["Success"] = "Cover Type deleted successfully";
+            TempData["Success"] = "CoverType deleted successfully";
             return RedirectToAction("Index");
 
         }
     }
 }
+
+
