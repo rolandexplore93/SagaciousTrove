@@ -8,7 +8,7 @@ namespace Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
-        public string description { get; set; }
+        public string Description { get; set; }
         [Required]
         public string ISBN { get; set; }
         [Required]
