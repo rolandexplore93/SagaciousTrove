@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SagaciousTrove.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240624055249_RenameProductDescription")]
-    partial class RenameProductDescription
+    [Migration("20240714013701_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -8,26 +8,25 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\K I N G S\\.nuget\\packages\\": {}
+    "/Users/orobolaogundipe/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\K I N G S\\Desktop\\C# Projects\\SagaciousTrove\\Utility\\Utility.csproj",
+      "projectUniqueName": "/Users/orobolaogundipe/Projects/SagaciousTrove/Utility/Utility.csproj",
       "projectName": "Utility",
-      "projectPath": "C:\\Users\\K I N G S\\Desktop\\C# Projects\\SagaciousTrove\\Utility\\Utility.csproj",
-      "packagesPath": "C:\\Users\\K I N G S\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\K I N G S\\Desktop\\C# Projects\\SagaciousTrove\\Utility\\obj\\",
+      "projectPath": "/Users/orobolaogundipe/Projects/SagaciousTrove/Utility/Utility.csproj",
+      "packagesPath": "/Users/orobolaogundipe/.nuget/packages/",
+      "outputPath": "/Users/orobolaogundipe/Projects/SagaciousTrove/Utility/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\K I N G S\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/orobolaogundipe/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -56,12 +55,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.316/RuntimeIdentifierGraph.json"
       }
     }
   }

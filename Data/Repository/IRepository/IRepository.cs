@@ -4,7 +4,7 @@ namespace Data.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        // Assume T is Category
+        // E.g T is Category
         T GetFirstOrDefault(Expression<Func<T, bool>> filter);
         IEnumerable<T> GetAll();
         void Add(T entity);

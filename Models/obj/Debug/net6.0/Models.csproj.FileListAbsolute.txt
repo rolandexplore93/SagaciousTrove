@@ -1,11 +1,23 @@
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\bin\Debug\net6.0\Models.deps.json
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\bin\Debug\net6.0\Models.dll
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\bin\Debug\net6.0\Models.pdb
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\Models.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\Models.AssemblyInfoInputs.cache
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\Models.AssemblyInfo.cs
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\Models.csproj.CoreCompileInputs.cache
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\Models.dll
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\refint\Models.dll
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\Models.pdb
-C:\Users\K I N G S\Desktop\C# Projects\SagaciousTrove\Models\obj\Debug\net6.0\ref\Models.dll
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/bin/Debug/net6.0/Models.deps.json
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/bin/Debug/net6.0/Models.dll
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/bin/Debug/net6.0/Models.pdb
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.AssemblyInfoInputs.cache
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.AssemblyInfo.cs
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.csproj.CoreCompileInputs.cache
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.dll
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/refint/Models.dll
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.pdb
+C:/Users/K I N G S/Desktop/C# Projects/SagaciousTrove/Models/obj/Debug/net6.0/ref/Models.dll
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/bin/Debug/net6.0/Models.deps.json
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/bin/Debug/net6.0/Models.dll
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/bin/Debug/net6.0/Models.pdb
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.csproj.AssemblyReference.cache
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.AssemblyInfoInputs.cache
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.AssemblyInfo.cs
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.csproj.CoreCompileInputs.cache
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.dll
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/refint/Models.dll
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/Models.pdb
+/Users/orobolaogundipe/Projects/SagaciousTrove/Models/obj/Debug/net6.0/ref/Models.dll

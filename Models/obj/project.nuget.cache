@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "x+yzAjkRb2bjk3B43BSqNRxlQTGn+gdrs1mXTd6b48C4HHZ3Op9xYQ0B9yzkCyqJwMwjVCnxDsThFlNlVbOHcQ==",
+  "dgSpecHash": "nQBeIqJAWkumUOG0Cf0qiSBd4w2mi3BW2eIUEi1ZT0DGTcc0j8ErC+IUR9A6mk2YrTCcAj7GsoOIPqAcKrOv7w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\K I N G S\\Desktop\\C# Projects\\SagaciousTrove\\Models\\Models.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/orobolaogundipe/Projects/SagaciousTrove/Models/Models.csproj",
+  "expectedPackageFiles": [
+    "/Users/orobolaogundipe/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.30/microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
+    "/Users/orobolaogundipe/.nuget/packages/microsoft.netcore.app.ref/6.0.30/microsoft.netcore.app.ref.6.0.30.nupkg.sha512"
+  ],
   "logs": []
 }
