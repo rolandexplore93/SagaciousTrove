@@ -10,10 +10,12 @@ namespace SagaciousTrove.CoverTypeController
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
 
         //public IActionResult Index()
@@ -74,16 +76,29 @@ namespace SagaciousTrove.CoverTypeController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM obj, IFormFile file)
+        public IActionResult Upsert(ProductVM obj, IFormFile? file)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(obj);
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images/products");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName+extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    obj.Product.ImageUrl = @"/images/products/" + fileName + extension;
+                }
+                //return View(obj);
             }
 
-            //_unitOfWork.CoverType.Update(obj);
+            _unitOfWork.Product.Add(obj.Product);
             _unitOfWork.Save();
-            TempData["Success"] = "CoverType updated successfully";
+            TempData["Success"] = "Product created successfully";
             return RedirectToAction("Index");
 
         }
