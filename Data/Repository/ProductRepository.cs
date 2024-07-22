@@ -30,7 +30,7 @@ namespace Data.Repository
 
                 if (objFromDb.ImageUrl != null)
                 {
-                    objFromDb.ImageUrl = objFromDb.ImageUrl;
+                    objFromDb.ImageUrl = obj.ImageUrl;
                 }
             }
         }

@@ -18,6 +18,7 @@ namespace SagaciousTrove.CoverTypeController
             IEnumerable<CoverType> objCoverTypelist = _unitOfWork.CoverType.GetAll();
             return View(objCoverTypelist);
         }
+
         [HttpGet]
         public IActionResult Create()
         {

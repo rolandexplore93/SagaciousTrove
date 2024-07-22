@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
+using Models.ViewModels;
 
 namespace SagaciousTrove.CoverTypeController
 {
@@ -14,61 +15,73 @@ namespace SagaciousTrove.CoverTypeController
         {
             _unitOfWork = unitOfWork;
         }
+
+        //public IActionResult Index()
+        //{
+        //    IEnumerable<CoverType> objCoverTypelist = _unitOfWork.CoverType.GetAll();
+        //    return View(objCoverTypelist);
+        //}
+
         public IActionResult Index()
         {
-            IEnumerable<CoverType> objCoverTypelist = _unitOfWork.CoverType.GetAll();
-            return View(objCoverTypelist);
+            IEnumerable<Product> objProductTypelist = _unitOfWork.Product.GetAll();
+            return View(objProductTypelist);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-
         [HttpGet]
         public IActionResult Upsert(int? id)
         {
-            Product product = new();
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
-                u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                }
-            );
-            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
-                u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                }
-            );
+            ProductVM productVM = new()
+            {
+                Product = new(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(
+                        u => new SelectListItem
+                        {
+                            Text = u.Name,
+                            Value = u.Id.ToString()
+                        }
+                ),
+
+                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+                    u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    }
+                )
+            };
+
             if (id == null || id == 0)
             {
                 // Create new product
-                ViewBag.CategoryList = CategoryList;
-                ViewData["CoverTypeList"] = CoverTypeList;
-                return View(product);
+                //ViewBag.CategoryList = CategoryList;
+                //ViewData["CoverTypeList"] = CoverTypeList;
+                return View(productVM);
             }
             else
             {
                 // Update existing product
             }
 
-            return View();
+            return View(productVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(CoverType obj)
+        public IActionResult Upsert(ProductVM obj, IFormFile file)
         {
             if (!ModelState.IsValid)
             {
                 return View(obj);
             }
 
-            _unitOfWork.CoverType.Update(obj);
+            //_unitOfWork.CoverType.Update(obj);
             _unitOfWork.Save();
             TempData["Success"] = "CoverType updated successfully";
             return RedirectToAction("Index");
@@ -107,7 +120,6 @@ namespace SagaciousTrove.CoverTypeController
             _unitOfWork.Save();
             TempData["Success"] = "CoverType deleted successfully";
             return RedirectToAction("Index");
-
         }
     }
 }
