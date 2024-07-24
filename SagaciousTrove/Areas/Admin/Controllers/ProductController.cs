@@ -26,8 +26,9 @@ namespace SagaciousTrove.CoverTypeController
 
         public IActionResult Index()
         {
-            IEnumerable<Product> objProductTypelist = _unitOfWork.Product.GetAll();
-            return View(objProductTypelist);
+            //IEnumerable<Product> objProductTypelist = _unitOfWork.Product.GetAll();
+            //return View(objProductTypelist);
+            return View();
         }
 
         [HttpGet]
@@ -136,6 +137,15 @@ namespace SagaciousTrove.CoverTypeController
             TempData["Success"] = "CoverType deleted successfully";
             return RedirectToAction("Index");
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            return Json(new { data = productList });
+        }
+        #endregion
     }
 }
 
