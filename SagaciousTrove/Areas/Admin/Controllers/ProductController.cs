@@ -135,6 +135,11 @@ namespace SagaciousTrove.CoverTypeController
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return NotFound("Item does not exist!");
+            }
+
             var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
