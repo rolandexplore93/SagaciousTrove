@@ -13,7 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     b => b.MigrationsAssembly("Data")
 ));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
     //.AddEntityFrameworkStores<SagaciousTroveIdentityDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

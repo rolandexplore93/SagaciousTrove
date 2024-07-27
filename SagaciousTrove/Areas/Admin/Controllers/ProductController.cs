@@ -32,12 +32,6 @@ namespace SagaciousTrove.CoverTypeController
         }
 
         [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpGet]
         public IActionResult Upsert(int? id)
         {
             ProductVM productVM = new()

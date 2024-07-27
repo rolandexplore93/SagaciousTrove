@@ -38,5 +38,9 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\products\" />
+    <Folder Include="Areas\Admin\Views\Company\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Areas\Admin\Views\Company\" />
   </ItemGroup>
 </Project>
