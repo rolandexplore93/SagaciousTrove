@@ -6,6 +6,8 @@
         ICoverTypeRepository CoverType { get; }
         IProductRepository Product { get; }
         ICompanyRepository Company { get; }
+        IApplicationUserRepository ApplicationUser { get; }
+        IShoppingCartRespository ShoppingCart { get; }
         void Save();
     }
 }

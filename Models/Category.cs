@@ -14,5 +14,6 @@ namespace Models
         [Range(1, 200, ErrorMessage = "Display Order must be within 1 - 200. If you want to order more than this, please contact us.")]
         public int DisplayOrder { get; set; }
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+        public DateTime ModifiedDateTime { get; set; } = DateTime.Now;
     }
 }
