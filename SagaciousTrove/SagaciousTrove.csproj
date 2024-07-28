@@ -42,8 +42,10 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\products\" />
     <Folder Include="Areas\Admin\Views\Company\" />
+    <Folder Include="Areas\Customer\Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Areas\Admin\Views\Company\" />
+    <None Remove="Areas\Customer\Views\Cart\" />
   </ItemGroup>
 </Project>

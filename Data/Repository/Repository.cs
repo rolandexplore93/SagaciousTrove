@@ -15,6 +15,8 @@ namespace Data.Repository
         {
             _db = db; // database implementation
             //_db.Products.Include(u => u.Category).Include(u => u.CoverType);
+            //_db.ShoppingCarts.Include(u => u.Product).Include(u => u.ApplicationUser);
+
             // From the _db above, assign it to dbSet on the generic class T. This will set the DbSet to the particular instance of the class that is calling the repository
             this.dbSet = _db.Set<T>();
         }
@@ -25,10 +27,16 @@ namespace Data.Repository
         }
 
         // includeProperties - "Category,CoverType" i.e they are separated by a comma
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter=null, string? includeProperties = null)
         {
-            // This should return IEnumerable<T> but we may want to query the data first before returnimg IEnumerable<T>. So, use IQuerable
+            // This should return IEnumerable<T> but you may want to query the data first before returnimg IEnumerable<T>. So, use IQuerable
             IQueryable<T> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
             if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
