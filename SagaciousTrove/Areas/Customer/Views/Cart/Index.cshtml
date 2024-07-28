@@ -49,9 +49,9 @@
                                             <a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-primary bg-gradient py-2">
                                                 <i class="bi bi-plus-square"></i>
                                             </a> &nbsp;
-                                        <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-warning bg-gradient py-2 @(item.Count <= 1 ? "disabled" : "")">
-                                            <i class="bi bi-dash-square"></i>
-                                        </a>
+                                            <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-warning bg-gradient py-2 @(item.Count <= 1 ? "disabled" : "")">
+                                                <i class="bi bi-dash-square"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-2 col-sm-4 col-lg-2 offset-lg-1 text-right pt-2">
@@ -67,7 +67,7 @@
                 }
                 <div class="row">
                     <div class="col-12 col-md-4 offset-md-4 col-lg-4 offset-lg-8 pr-4">
-                        <ul class="list-group mb-4">
+                        <ul class="list-group mb-2">
                             <li class="list-group-item d-flex justify-content-between bg-light align-items-center">
                                 <h5 class="text-dark fw-semibold text-uppercase"> Total (USD)</h5>
                                 <h4 class="text-dark fw-bolder">@Model.CartTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))</h4>
@@ -75,11 +75,12 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card-footer bg-white border-0">
-                    <div class="row">
-                        <div class="col-md-2 offset-md-5">
-                            <a href="#" class="btn btn-primary border-0 bg-gradient w-100 py-2">Summary</a>
-                        </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="card-footer row">
+                    <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6">
+                        <a asp-action="Summary" class="btn btn-success form-control">Summary</a>
                     </div>
                 </div>
             </div>
