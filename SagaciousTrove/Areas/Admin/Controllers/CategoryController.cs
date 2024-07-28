@@ -70,11 +70,19 @@ namespace SagaciousTrove.Controllers
                 return View(obj);
             }
 
-            _unitOfWork.Category.Update(obj);
+            var existingCategory = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == obj.Id);
+            if (existingCategory == null)
+            {
+                return NotFound();
+            }
+
+            existingCategory.Name = obj.Name;
+            existingCategory.DisplayOrder = obj.DisplayOrder;
+            existingCategory.ModifiedDateTime = DateTime.Now;
+            _unitOfWork.Category.Update(existingCategory);
             _unitOfWork.Save();
             TempData["Success"] = "Category updated successfully";
             return RedirectToAction("Index");
-
         }
 
         [HttpGet]

@@ -65,10 +65,9 @@
                 @*<span asp-validation-for="Input.Role" class="text-danger"></span>*@
             </div>
             <div class="form-floating py-2 col-6">
-                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
-                    <option disabled selected>-- Select Role--</option>
+                <select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-select" style="display: none">
+                    <option disabled selected>-- Select Company--</option>
                 </select>
-                <label asp-for="Input.Role"></label>
                 @*<span asp-validation-for="Input.Role" class="text-danger"></span>*@
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Register</button>
@@ -108,4 +107,32 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        //$(document).ready(function() {
+        //    $('#Input_Role').change(function () {
+        //        var selection = $('#Input_Role Option:Selected').text();
+        //        if (selection != 'Company') {
+        //            $('#Input_CompanyId').hide()
+        //        }
+        //        else {
+        //            $('#Input_CompanyId').show()
+        //        }
+        //    })
+        //})
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var companyIdInput = document.getElementById("Input_CompanyId");
+            companyIdInput.style.display = "none";
+
+            document.getElementById("Input_Role").addEventListener("change", function () {
+                var selection = this.options[this.selectedIndex].text;
+                console.log(selection);
+                if (selection !== "Company") {
+                    companyIdInput.style.display = "none";
+                } else {
+                    companyIdInput.style.display = "block";
+                }
+            });
+        });
+    </script>
 }
