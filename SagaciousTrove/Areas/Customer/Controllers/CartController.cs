@@ -3,8 +3,10 @@ using System.Security.Claims;
 using Data.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Models;
 using Models.ViewModels;
+using Stripe.Checkout;
 using Utility;
 
 namespace SagaciousTrove.Areas.Customer.Controllers
@@ -94,7 +96,6 @@ namespace SagaciousTrove.Areas.Customer.Controllers
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
             }
 
-
             _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _unitOfWork.Save();
 
@@ -111,9 +112,64 @@ namespace SagaciousTrove.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
-            _unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
+            // Stripe settings
+            var domain = "https://localhost:7112/";
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain+$"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
+                CancelUrl = domain + $"customer/cart/index",
+            };
+
+            foreach (var item in ShoppingCartVM.ListCart)
+            {
+                var sessionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(item.Price*100), // This price is in cent and it's an integer. So multiply price by 100
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Product.Title
+                        },
+                    },
+                    Quantity = item.Count,
+                };
+                options.LineItems.Add(sessionLineItem);
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+            _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
             _unitOfWork.Save();
-            return RedirectToAction("Index", "Home");
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+
+            //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
+            //_unitOfWork.Save();
+            //return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult OrderConfirmation(int id)
+        {
+            OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
+            var service = new SessionService();
+            Session session = service.Get(orderHeader.SessionId); //Get existing session
+            _unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId);
+            _unitOfWork.Save();
+
+            // Check stripe status
+            if (session.PaymentStatus.ToLower() == "paid")
+            {
+                _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
+                _unitOfWork.Save();
+            }
+            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+            _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
+            _unitOfWork.Save();
+            return View(id);
         }
 
         public IActionResult Plus(int cartId)
