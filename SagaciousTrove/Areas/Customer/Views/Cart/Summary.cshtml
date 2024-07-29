@@ -94,8 +94,6 @@
                                         <span class="text-muted">@((details.Price * @details.Count).ToString("c", new System.Globalization.CultureInfo("en-US")))</span>
                                     </li>
                                  }
-
-
                                 <li class="list-group-item d-flex justify-content-between bg-light">
                                     <small class="text-info">Total (USD)</small>
                                     <strong class="text-info">@((Model.OrderHeader.OrderTotal).ToString("c", new System.Globalization.CultureInfo("en-US")))</strong>
