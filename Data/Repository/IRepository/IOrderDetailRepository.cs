@@ -2,8 +2,8 @@
 
 namespace Data.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {
-        void Update(Category obj);
+        void Update(OrderDetail obj);
     }
 }
