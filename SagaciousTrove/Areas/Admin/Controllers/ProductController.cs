@@ -65,7 +65,6 @@ namespace SagaciousTrove.CoverTypeController
             {
                 productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
                 return View(productVM);
-                // Update existing product
             }
 
         }
