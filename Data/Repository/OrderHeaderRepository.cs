@@ -36,6 +36,7 @@ namespace Data.Repository
             var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
             orderFromDb.SessionId = sessionId;
             orderFromDb.PaymentIntentId = paymentIntentId;
+            orderFromDb.PaymentDate = DateTime.Now;
         }
     }
 }
