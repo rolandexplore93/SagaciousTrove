@@ -6,15 +6,17 @@
     <br />
     <div class="container">
         <div class="card">
-            <div class="card-header bg-dark text-light ml-0 row container">
-                
+            <div class="card-header bg-dark text-light ml-0">
+                <div class="row container">
+
                     <div class="col-12 d-none d-md-block col-md-6 pb-1">
                         <i class="fas fa-shopping-cart"></i> &nbsp; Order Summary
                     </div>
                     <div class="col-12 col-md-4 offset-md-2 text-right">
                         <a asp-action="Index" class="btn btn-outline-info form-control btn-sm">Back to Orders</a>
                     </div>
-                
+                </div>
+
             </div>
             <div class="card-body">
                 <div class="container rounded p-2">
@@ -154,7 +156,7 @@
                                 </div>
                             </div>
                             @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
-                                {
+                            {
                                 <div class="row my-1">
                                     <div class="col-3">Session ID</div>
                                     <div class="col-9">
@@ -167,33 +169,33 @@
                                         <input asp-for="OrderHeader.PaymentIntentId" type="text" readonly class="form-control" />
                                     </div>
                                 </div>
-                             }
-                        <div class="row my-1">
-                            @if (Model.OrderHeader.SessionId == null)
-                            {
-                                <div class="col-3">Payment Due Date</div>
-                                <div class="col-9">
-                                    <input value="@Model.OrderHeader.PaymentDueDate.ToShortDateString()" type="text" class="form-control" />
-                                </div>
                             }
-                            else
-                            {
-                                <div class="col-3">Payment Date</div>
-                                <div class="col-9">
-                                    <input value="@Model.OrderHeader.PaymentDate.ToShortDateString()" type="text" class="form-control" />
-                                </div>
-                            }
-
-                        </div>
-                                <div class="row my-1">
-                                    <div class="col-3">Payment Status</div>
+                            <div class="row my-1">
+                                @if (Model.OrderHeader.SessionId == null)
+                                {
+                                    <div class="col-3">Payment Due Date</div>
                                     <div class="col-9">
-                                        <input asp-for="OrderHeader.PaymentStatus" type="text" readonly class="form-control" />
+                                        <input value="@Model.OrderHeader.PaymentDueDate.ToShortDateString()" type="text" class="form-control" />
                                     </div>
-                                </div>
-                                <input asp-action="UpdateOrderDetail" type="submit" class="btn btn-warning form-control my-1" value="Update Order Details" />
+                                }
+                                else
+                                {
+                                    <div class="col-3">Payment Date</div>
+                                    <div class="col-9">
+                                        <input value="@Model.OrderHeader.PaymentDate.ToShortDateString()" type="text" class="form-control" />
+                                    </div>
+                                }
 
                             </div>
+                            <div class="row my-1">
+                                <div class="col-3">Payment Status</div>
+                                <div class="col-9">
+                                    <input asp-for="OrderHeader.PaymentStatus" type="text" readonly class="form-control" />
+                                </div>
+                            </div>
+                            <input asp-action="UpdateOrderDetail" type="submit" class="btn btn-warning form-control my-1" value="Update Order Details" />
+
+                        </div>
                         <div class="col-12 col-lg-5 offset-lg-1">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-primary">Order Summary</span>
@@ -235,22 +237,20 @@
                             {
                                 @if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
                                 {
-
-                                    <input type="submit" class="btn btn-primary form-control my-1" value="Start Processing" />
+                                    <input asp-action="StartProcessing" type="submit" class="btn btn-primary form-control my-1" value="Start Processing" />
                                 }
                                 @if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
                                 {
-
-                                    <input type="submit" class="btn btn-primary form-control my-1" value="Ship Order" />
+                                    <input asp-action="ShipOrder" onclick="return validateFileInput()"  type="submit" class="btn btn-primary form-control my-1" value="Ship Order" />
                                 }
                                 @if (Model.OrderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment && Model.OrderHeader.OrderStatus == SD.StatusShipped)
                                 {
-
                                     <input type="submit" class="btn btn-success form-control my-1" value="Pay Now" />
                                 }
-                                @if (Model.OrderHeader.OrderStatus != SD.StatusRefunded || Model.OrderHeader.OrderStatus != SD.StatusCancelled)
+                                @if (Model.OrderHeader.OrderStatus != SD.StatusRefunded && Model.OrderHeader.OrderStatus != SD.StatusCancelled
+                                        && Model.OrderHeader.OrderStatus != SD.StatusShipped)
                                 {
-                                    <input type="submit" class="btn btn-danger form-control my-1" value="Cancel Order" />
+                                    <input asp-action="CancelOrder" type="submit" class="btn btn-danger form-control my-1" value="Cancel Order" />
                                 }
                             }
                         </div>
@@ -260,3 +260,31 @@
         </div>
     </div>
 </form>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        function validateFileInput() {
+            if (document.getElementById("carrier").value == "")
+            {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please enter Carrier Information"
+                });
+                return false;
+            }
+            if (document.getElementById("trackingNumber").value == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please enter Tracking Number"
+                });
+                return false;
+            }
+            return true;
+        }</script>
+}
