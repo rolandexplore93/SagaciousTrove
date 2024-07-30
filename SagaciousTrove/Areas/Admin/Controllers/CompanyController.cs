@@ -1,13 +1,16 @@
 ﻿using System;
 using Data.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Models;
+using Utility;
 
 namespace SagaciousTrove.Areas.Admin.Controllers
 {
     [Area("Admin")]
-	public class CompanyController : Controller
+    [Authorize(Roles = SD.Role_Admin)]
+    public class CompanyController : Controller
 	{
         private readonly IUnitOfWork _unitOfWork;
 
