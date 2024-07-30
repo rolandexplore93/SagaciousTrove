@@ -1,5 +1,6 @@
 ﻿using Data.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Data.Repository
@@ -15,6 +16,7 @@ namespace Data.Repository
         {
             _db = db; // database implementation
             //_db.Products.Include(u => u.Category).Include(u => u.CoverType);
+            //_db.ShoppingCarts.AsNoTracking(); // This entity will not be tracked by EF Core
             //_db.ShoppingCarts.Include(u => u.Product).Include(u => u.ApplicationUser);
 
             // From the _db above, assign it to dbSet on the generic class T. This will set the DbSet to the particular instance of the class that is calling the repository
@@ -47,9 +49,18 @@ namespace Data.Repository
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
             query = query.Where(filter);
             if (includeProperties != null)
             {
