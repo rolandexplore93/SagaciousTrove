@@ -45,10 +45,16 @@
     <Folder Include="Areas\Admin\Views\Company\" />
     <Folder Include="Areas\Customer\Views\Cart\" />
     <Folder Include="Areas\Admin\Views\Order\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\ShoppingCart\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Areas\Admin\Views\Company\" />
     <None Remove="Areas\Customer\Views\Cart\" />
     <None Remove="Areas\Admin\Views\Order\" />
+    <None Remove="ViewComponents\" />
+    <None Remove="Views\Shared\Components\" />
+    <None Remove="Views\Shared\Components\ShoppingCart\" />
   </ItemGroup>
 </Project>
