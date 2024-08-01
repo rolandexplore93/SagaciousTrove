@@ -22,8 +22,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation(); // Compilation at runtime
-var a = builder.Configuration.GetSection("SendGrid:SecretKey").Get<string>();
-var b = builder.Configuration.GetSection("Facebook:AppId").Get<string>();
 builder.Services.AddAuthentication().AddFacebook(options =>
 {
     options.AppId = builder.Configuration.GetSection("Facebook:AppId").Get<string>();
@@ -68,5 +66,4 @@ app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
-
 app.Run();
