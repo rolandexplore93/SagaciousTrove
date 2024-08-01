@@ -7,4 +7,3 @@ namespace Utility
 		public string PublishableKey { get; set; }
     }
 }
-

@@ -19,10 +19,16 @@ builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Str
 builder.Services.Configure<GmailSettings>(builder.Configuration.GetSection("gmail"));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-    //.AddEntityFrameworkStores<SagaciousTroveIdentityDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation(); // Compilation at runtime
+var a = builder.Configuration.GetSection("SendGrid:SecretKey").Get<string>();
+var b = builder.Configuration.GetSection("Facebook:AppId").Get<string>();
+builder.Services.AddAuthentication().AddFacebook(options =>
+{
+    options.AppId = builder.Configuration.GetSection("Facebook:AppId").Get<string>();
+    options.AppSecret = builder.Configuration.GetSection("Facebook:AppSecret").Get<string>();
+});
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = $"/Identity/Account/Login";
