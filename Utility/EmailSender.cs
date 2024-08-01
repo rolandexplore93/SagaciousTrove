@@ -1,51 +1,63 @@
-﻿using System;
-using System.Xml.Linq;
-using MailKit.Net.Smtp;
+﻿using System.Net;
+using System.Net.Mail;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using MimeKit;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 
 namespace Utility
 {
-	public class EmailSender : IEmailSender
+    public class EmailSender : IEmailSender
     {
         private readonly GmailSettings _gmailSettings;
-        public string SendGridSecret { get; set; }
+        private readonly IConfiguration _configuration;
+        public string MailerSendHost { get; set; }
+        public string MailerSendPort { get; set; }
+        public string MailerSendUsername { get; set; }
+        public string MailerSendPassword { get; set; }
 
-        public EmailSender(IOptions<GmailSettings> gmailSettings, IConfiguration _config)
+        public EmailSender(IOptions<GmailSettings> gmailSettings, IConfiguration configuration)
         {
             _gmailSettings = gmailSettings.Value;
-            SendGridSecret = _config.GetValue<string>("SendGrid:SecretKey");
+            _configuration = configuration;
+            MailerSendHost = _configuration.GetValue<string>("mailersend:host");
+            MailerSendPort = _configuration.GetValue<string>("mailersend:port");
+            MailerSendUsername = _configuration.GetValue<string>("mailersend:username");
+            MailerSendPassword = _configuration.GetValue<string>("mailersend:password");
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var client = new SendGridClient(SendGridSecret);
-            var from = new EmailAddress("roland2rule@gmail.com", "Sagacious Trove");
-            var to = new EmailAddress(email);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
-            return client.SendEmailAsync(msg);
+            try
+            {
+                string host = MailerSendHost;
+                int.TryParse(MailerSendPort, out int port);
+                string username = MailerSendUsername;
+                string password = MailerSendPassword;
 
-            //string pw = _gmailSettings.pw;
-            //string name = _gmailSettings.name;
+                var smtpClient = new System.Net.Mail.SmtpClient(host)
+                {
+                    Port = port,
+                    Credentials = new NetworkCredential(username, password),
+                    EnableSsl = true
+                };
 
-            //var emailToSend = new MimeMessage();
-            //emailToSend.From.Add(MailboxAddress.Parse("hello@sagacious.com"));
-            //emailToSend.To.Add(MailboxAddress.Parse(email));
-            //emailToSend.Subject = subject;
-            //emailToSend.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = htmlMessage };
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(username, "SagaciousTrove"),
+                    Subject = subject,
+                    Body = htmlMessage,
+                    IsBodyHtml = true
+                };
 
-            //using (var emailClient = new SmtpClient())
-            //{
-            //    emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            //    emailClient.Authenticate(name, pw);
-            //    emailClient.Send(emailToSend);
-            //    emailClient.Disconnect(true);
-            //}
-            //return Task.CompletedTask;
+                mailMessage.To.Add(email);
+                smtpClient.SendMailAsync(mailMessage);
+
+                return Task.CompletedTask;
+            }
+            catch (Exception)
+            {
+                return Task.CompletedTask;
+            }
         }
     }
 }

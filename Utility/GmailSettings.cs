@@ -3,7 +3,7 @@ namespace Utility
 {
 	public class GmailSettings
 	{
-		public string pw { get; set; }
-		public string name { get; set; }
+		public string ClientSecret { get; set; }
+		public string ClientId { get; set; }
     }
 }
