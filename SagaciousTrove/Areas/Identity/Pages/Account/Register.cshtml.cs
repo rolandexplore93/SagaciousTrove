@@ -208,7 +208,14 @@ namespace SagaciousTrove.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        if (User.IsInRole(SD.Role_Admin))
+                        {
+                            TempData["success"] = "User account created successfully";
+                        }
+                        else
+                        {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
