@@ -58,8 +58,8 @@ namespace SagaciousTrove.Areas.Admin.Controllers
 
             // Stripe settings
             //var domain = "https://localhost:7112/";
-            //var domain = "https://sagacious-trove.onrender.com/";
-            var domain = "http://tetrawrite-001-site1.atempurl.com/";
+            var domain = "https://sagacious-trove.onrender.com/";
+            //var domain = "http://tetrawrite-001-site1.atempurl.com/";
 
             var options = new SessionCreateOptions
             {
