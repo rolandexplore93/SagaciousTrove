@@ -57,7 +57,8 @@ namespace SagaciousTrove.Areas.Admin.Controllers
             OrderVM.OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
 
             // Stripe settings
-            var domain = "https://localhost:7112/";
+            //var domain = "https://localhost:7112/";
+            var domain = "https://sagacious-trove.onrender.com/";
             var options = new SessionCreateOptions
             {
                 LineItems = new List<SessionLineItemOptions>(),

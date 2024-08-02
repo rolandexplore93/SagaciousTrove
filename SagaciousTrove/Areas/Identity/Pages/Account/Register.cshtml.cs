@@ -130,13 +130,16 @@ namespace SagaciousTrove.Areas.Identity.Pages.Account
         {
             //await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
             //_roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-            if (!_roleManager.RoleExistsAsync(SD.Role_Admin).GetAwaiter().GetResult())
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Comp));
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi));
-            }
+
+            // Adding roles to table
+            //if (!_roleManager.RoleExistsAsync(SD.Role_Admin).GetAwaiter().GetResult())
+            //{
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Comp));
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi));
+            //}
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             Input = new InputModel()
@@ -199,8 +202,8 @@ namespace SagaciousTrove.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -3,38 +3,49 @@
 }
 
 @model IEnumerable<Product>
-
-<div>
-    <h4 class="display-4 text-center m-2 ">Welcome To SagaciousTrove!</h4>
-    <div class="row pb-3 pt-3">
-        @foreach (var product in Model)
-        {
-            <div class="col-lg-3 col-md-6">
-                <div class="row p-2">
-                    <div class="col-12 p-1" style="border: 1px solid #008cba; border-radius: 5px">
-                        <div class="card">
-                            <img src="@product.ImageUrl" class="card-img-top rounded"/>
-                            <div class="card-body">
-                                <div class="pl-1">
-                                    <p class="card-title h5 text-primary">@product.Title</p>
-                                    <p class="card-title text-info">by <b>@product.Author</b></p>
+    <div>
+        @*<h4 class="display-4 text-center m-2 ">Welcome To SagaciousTrove!</h4>*@
+        <div class="d-flex p-2">
+            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
+            @*<img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner2.jpeg")" alt="Responsive image">
+        <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner3.jpeg")" alt="Responsive image">*@
+            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
+            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
+            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
+        </div>
+        <div>
+            <h2 style="text-decoration: underline">Hair Product</h2>
+        </div>
+        <div class="row pb-3 pt-3">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="row p-2">
+                        <div class="col-12 p-1" style="border: 1px solid #008cba; border-radius: 5px">
+                            <div class="card">
+                                <img src="@product.ImageUrl" class="card-img-top rounded" />
+                                <div class="card-body">
+                                    <div class="pl-1">
+                                        <p class="card-title h5 text-primary">@product.Title</p>
+                                        <p class="card-title text-info">by <b>@product.Author</b></p>
+                                    </div>
+                                    <div class="pl-1">
+                                        <p>List Price: <strike><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
+                                    </div>
+                                    <div class="pl-1">
+                                        <p>As low as: <b>$@product.Price100.ToString("0.00")</b></p>
+                                    </div>
                                 </div>
-                                <div class="pl-1">
-                                    <p>List Price: <strike><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
+                                <div>
+                                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId="@product.Id">
+                                        Details
+                                    </a>
                                 </div>
-                                <div class="pl-1">
-                                    <p>As low as: <b>$@product.Price100.ToString("0.00")</b></p>
-                                </div>
-                            </div>
-                            <div>
-                                <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId="@product.Id">
-                                    Details
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+    <script src="~/js/site.js" asp-append-version="true"></script>

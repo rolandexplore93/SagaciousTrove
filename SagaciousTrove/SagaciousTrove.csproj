@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>069dd13f-3e3c-46b3-a638-727e93538a80</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -57,5 +59,10 @@
     <None Remove="ViewComponents\" />
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\ShoppingCart\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\images\sagacious\banner_image.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

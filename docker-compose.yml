@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  sagacioustrove:
+    image: ${DOCKER_REGISTRY-}sagacioustrove
+    build:
+      context: .
+      dockerfile: SagaciousTrove/Dockerfile

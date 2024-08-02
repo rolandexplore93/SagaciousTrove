@@ -133,7 +133,8 @@ namespace SagaciousTrove.Areas.Customer.Controllers
             if (applicationUser.CompanyId.GetValueOrDefault() == 0 || applicationUser.CompanyId == null)
             {
                 // Stripe settings
-                var domain = "https://localhost:7112/";
+                //var domain = "https://localhost:7112/";
+                var domain = "https://sagacious-trove.onrender.com/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>(),
@@ -190,8 +191,10 @@ namespace SagaciousTrove.Areas.Customer.Controllers
                     _unitOfWork.Save();
                 }
             }
-            //orderHeader.ApplicationUser.Email
-            var a = _emailSender.SendEmailAsync("prowess2rule@gmail.com", "New Order from Sagacious Trove", "<p>New Order Created</p>");
+            //_emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order from Sagacious Trove", "<p>New Order Created</p>");
+            //_emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order from Sagacious Trove",
+            //    "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Welcome to SagaciousTrove!</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f4f4f4;\n            color: #333;\n            padding: 20px;\n        }\n        .email-container {\n            max-width: 600px;\n            margin: auto;\n            background-color: #fff;\n            padding: 20px;\n            border-radius: 10px;\n            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n        }\n        .header {\n            background-color: #f79646;\n            color: white;\n            padding: 20px;\n            border-radius: 10px 10px 0 0;\n            text-align: center;\n        }\n        .content {\n            margin: 20px 0;\n            text-align: center;\n        }\n        .content h1 {\n            font-size: 24px;\n            color: #f79646;\n        }\n        .content p {\n            font-size: 16px;\n            line-height: 1.5;\n        }\n        .button {\n            display: inline-block;\n            margin-top: 20px;\n            padding: 12px 20px;\n            background-color: #f79646;\n            color: white;\n            text-decoration: none;\n            border-radius: 5px;\n            font-size: 16px;\n            font-weight: bold;\n        }\n        .footer {\n            text-align: center;\n            color: #999;\n            margin-top: 20px;\n            font-size: 12px;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"email-container\">\n        <div class=\"header\">\n            <h2>Welcome to SagaciousTrove!</h2>\n        </div>\n        <div class=\"content\">\n            <h1>Thank You for Signing Up!</h1>\n            <p>We're thrilled to have you on board. SagaciousTrove is your gateway to the best salon experiences. Before you can start exploring, we need to verify your email address.</p>\n            <p>Please click the button below to confirm your email address:</p>\n            <a href=\"@HtmlEncoder.Default.Encode(callbackUrl)\" class=\"button\">Verify Email</a>\n        </div>\n        <div class=\"footer\">\n            <p>If you didn’t sign up for this account, please disregard this email.</p>\n            <p>&copy; 2024 SagaciousTrove. All rights reserved.</p>\n        </div>\n    </div>\n</body>\n</html>"
+            //);
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
             HttpContext.Session.Clear();
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);

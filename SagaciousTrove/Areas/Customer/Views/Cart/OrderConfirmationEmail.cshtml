@@ -1,0 +1,83 @@
+﻿@model Models.ViewModels.ShoppingCartVM
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Order from Sagacious Trove</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #f79646;
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+
+        .content {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+            .content h1 {
+                font-size: 24px;
+                color: #f79646;
+            }
+
+            .content p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #f79646;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>New Order Confirmation</h2>
+        </div>
+        <div class="content">
+            <h1>Thank you for your order, @Model.OrderHeader.ApplicationUser.Name</h1>
+            <p>We have received your order and it is currently being processed.</p>
+            <p>Your Order Number is @Model.OrderHeader.Id</p>
+            <p>We will notify you once your order has been shipped</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 SagaciousTrove. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
