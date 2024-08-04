@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] - SagaciousTrove</title>
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     <link rel="stylesheet" href="~/css/bootswatch.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -15,9 +15,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.0/css/dataTables.dataTables.min.css" />
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .content {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .body-content {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="content">
         <header>
             <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
                 <div class="container-fluid">
@@ -31,7 +48,7 @@
                                 <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home <span class="visually-hidden">(current)</span></a>
                             </li>
                             @*@if (User.IsInRole(SD.Role_Admin))
-                            {*@
+                                {*@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
                                 <div class="dropdown-menu">
@@ -51,22 +68,22 @@
                                 </a>
                             </li>
                             @*@if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.SessionCart) != null)
-                                {
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                                <i class="bi bi-cart"></i> &nbsp;
+                                                (@HttpContextAccessor.HttpContext.Session.GetInt32(SD.SessionCart))
+                                            </a>
+                                        </li>
+
+                                    } else
+                                    {
                                     <li class="nav-item">
                                         <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                            <i class="bi bi-cart"></i> &nbsp;
-                                            (@HttpContextAccessor.HttpContext.Session.GetInt32(SD.SessionCart))
+
                                         </a>
                                     </li>
-
-                                } else
-                                {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-
-                                    </a>
-                                </li>
-                            }*@
+                                }*@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
                                     @await Component.InvokeAsync("ShoppingCart");
@@ -75,9 +92,9 @@
                         </ul>
                         <partial name="_LoginPartial" />
                         @*<form class="d-flex">
-                            <input class="form-control me-sm-2" type="search" placeholder="Search">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>*@
+                                <input class="form-control me-sm-2" type="search" placeholder="Search">
+                                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>*@
                     </div>
                 </div>
             </nav>
@@ -89,51 +106,9 @@
             </main>
         </div>
 
-        @*<footer class="footer text-secondary bg-primary">
+        <footer class="footer text-secondary bg-primary">
             <div class="container">
                 &copy; 2024 - SagaciousTrove
-            </div>
-        </footer>*@
-        <footer class="bg-primary text-white py-4">
-            <div class="container">
-                <div class="row">
-                    <!-- About Section -->
-                    <div class="col-md-3">
-                        <h5>About Us</h5>
-                        <p>We are a team of passionate individuals dedicated to providing the best services to our customers. Our mission is to deliver top-notch solutions with a focus on quality and customer satisfaction.</p>
-                    </div>
-                    <!-- Quick Links Section -->
-                    <div class="col-md-3">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white text-decoration-none">Home</a></li>
-                            <li><a href="#" class="text-white text-decoration-none">About</a></li>
-                            <li><a href="#" class="text-white text-decoration-none">Services</a></li>
-                            <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
-                        </ul>
-                    </div>
-                    <!-- Contact Section -->
-                    <div class="col-md-3">
-                        <h5>Contact Us</h5>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-map-marker-alt"></i> 123 Street, Abeokuta, Ogun State</li>
-                            <li><i class="fas fa-phone"></i> +34 234 567 890</li>
-                            <li><i class="fas fa-envelope"></i> info@sagacious.com</li>
-                        </ul>
-                    </div>
-                    <!-- Social Media Section -->
-                    <div class="col-md-3">
-                        <h5>Follow Us</h5>
-                        <a href="#" class="text-white text-decoration-none"><i class="bi bi-whatsapp"></i></a>
-                        <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
-                <hr class="bg-white mt-4">
-                <div class="text-center">
-                    <p class="mb-0">&copy; 2024 Sagacious Trove. All Rights Reserved.</p>
-                </div>
             </div>
         </footer>
     </div>

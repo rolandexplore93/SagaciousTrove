@@ -41,6 +41,11 @@
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
     <Content Remove="wwwroot\images\products\" />
+    <Content Remove="wwwroot\assets\" />
+    <Content Remove="wwwroot\assets\css\" />
+    <Content Remove="wwwroot\assets\fonts\" />
+    <Content Remove="wwwroot\assets\images\" />
+    <Content Remove="wwwroot\assets\js\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
@@ -51,6 +56,11 @@
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\ShoppingCart\" />
+    <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\assets\css\" />
+    <Folder Include="wwwroot\assets\fonts\" />
+    <Folder Include="wwwroot\assets\images\" />
+    <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Areas\Admin\Views\Company\" />

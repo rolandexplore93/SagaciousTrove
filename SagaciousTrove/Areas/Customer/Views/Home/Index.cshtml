@@ -1,51 +1,121 @@
 ﻿@{
-    ViewData["Title"] = "Homepage";
+    ViewData["Title"] = "Sagacious Trove";
 }
 
 @model IEnumerable<Product>
-    <div>
-        @*<h4 class="display-4 text-center m-2 ">Welcome To SagaciousTrove!</h4>*@
-        <div class="d-flex p-2">
-            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
-            @*<img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner2.jpeg")" alt="Responsive image">
-        <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner3.jpeg")" alt="Responsive image">*@
-            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
-            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
-            <img class="img-fluid row" src="@Url.Content("~/images/sagacious/banner_image.jpg")" alt="Responsive image">
+<style>
+
+</style>
+<div>
+    <div class="container my-5">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+                <!-- First Slide -->
+                <div class="carousel-item active">
+                    <img src="https://images.pexels.com/photos/705255/pexels-photo-705255.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" class="d-block" alt="First Slide">
+                </div>
+                <!-- Second Slide -->
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/13439624/pexels-photo-13439624.jpeg?auto=compress&cs=tinysrgb&w=600" class="d-block" alt="Second Slide">
+                </div>
+                <!-- Third Slide -->
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/1233333/pexels-photo-1233333.jpeg?auto=compress&cs=tinysrgb&w=600" class="d-block" alt="Third Slide">
+                </div>
+                <!-- Fourth Slide -->
+                <div class="carousel-item">
+                    <img src="@Url.Content("~/images/sagacious/banner_image.jpg")" class="d-block" alt="Fourth Slide">
+                </div>
+            </div>
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div>
-            <h2 style="text-decoration: underline">Hair Product</h2>
-        </div>
-        <div class="row pb-3 pt-3">
-            @foreach (var product in Model)
-            {
-                <div class="col-lg-3 col-md-6">
-                    <div class="row p-2">
-                        <div class="col-12 p-1" style="border: 1px solid #008cba; border-radius: 5px">
-                            <div class="card">
-                                <img src="@product.ImageUrl" class="card-img-top rounded" />
+    </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Glow Up Deals</h2>
+        <!-- Tabs -->
+        <ul class="nav nav-tabs justify-content-center" id="offerTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="advertised-tab" data-bs-toggle="tab" data-bs-target="#advertised" type="button" role="tab" aria-controls="advertised" aria-selected="true">Best for You</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="today-tab" data-bs-toggle="tab" data-bs-target="#today" type="button" role="tab" aria-controls="today" aria-selected="false">Specials</button>
+            </li>
+        </ul>
+        <!-- Tab Content -->
+        <div class="tab-content" id="offerTabsContent">
+            <!-- Tab 1 -->
+            <div class="tab-pane fade show active" id="advertised" role="tabpanel" aria-labelledby="advertised-tab">
+                <div class="row mt-4">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="product-card p-3">
+                                <div class="offer-badge">AVAILABLE</div>
+                                <img src="@product.ImageUrl" class="img-fluid card-img-top rounded" alt="@product.Title">
                                 <div class="card-body">
-                                    <div class="pl-1">
-                                        <p class="card-title h5 text-primary">@product.Title</p>
-                                        <p class="card-title text-info">by <b>@product.Author</b></p>
+                                    <h5 class="card-title text-primary">@product.Title</h5>
+                                    <p class="text-info">by <b>@product.Author</b></p>
+                                    <div class="stars">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star gray-star" aria-hidden="true"></i>
                                     </div>
-                                    <div class="pl-1">
-                                        <p>List Price: <strike><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
-                                    </div>
-                                    <div class="pl-1">
-                                        <p>As low as: <b>$@product.Price100.ToString("0.00")</b></p>
-                                    </div>
+                                    <p>List Price: <strike><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
+                                    <p>As low as: <b>$@product.Price100.ToString("0.00")</b></p>
                                 </div>
-                                <div>
+                                <div class="card-footer bg-transparent">
                                     <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId="@product.Id">
                                         Details
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
+                    
                 </div>
-            }
+            </div>
+            <!-- Tab 2 -->
+            <div class="tab-pane fade" id="today" role="tabpanel" aria-labelledby="today-tab">
+                <div class="row mt-4">
+                    @foreach (var product in Model.Where(p => p.ListPrice > 30))
+                    {
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="product-card p-3">
+                                <div class="offer-badge text-danger">OFFER</div>
+                                <img src="@product.ImageUrl" class="img-fluid card-img-top rounded" alt="@product.Title">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">@product.Title</h5>
+                                    <p class="text-info">by <b>@product.Author</b></p>
+                                    <div class="stars">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                                    </div>
+                                    <p>List Price: <strike><b>$@product.ListPrice.ToString("0.00")</b></strike></p>
+                                    <p>As low as: <b>$@product.Price100.ToString("0.00")</b></p>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId="@product.Id">
+                                        Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+</div>
