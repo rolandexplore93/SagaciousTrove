@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vonsc7LwquXMYal/WGO48/TgtIgGMoitbuA3ESEcuvRNmA/bRl6SfSzeKR9Nq4CbSqZEu8uzWK7rbvi7lzq3wQ==",
+  "dgSpecHash": "9frHKxTYHdUInHhqZNd6b5JYwEugMmOQPe6yxt2oKpsWiccMs61XmPZ30l6cxWxyw8TzedaE3mFWPxejyvlK8A==",
   "success": true,
   "projectFilePath": "/Users/orobolaogundipe/Projects/SagaciousTrove/Utility/Utility.csproj",
   "expectedPackageFiles": [
@@ -32,9 +32,7 @@
     "/Users/orobolaogundipe/.nuget/packages/system.formats.asn1/8.0.1/system.formats.asn1.8.0.1.nupkg.sha512",
     "/Users/orobolaogundipe/.nuget/packages/system.management/7.0.2/system.management.7.0.2.nupkg.sha512",
     "/Users/orobolaogundipe/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/Users/orobolaogundipe/.nuget/packages/system.security.cryptography.pkcs/8.0.0/system.security.cryptography.pkcs.8.0.0.nupkg.sha512",
-    "/Users/orobolaogundipe/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.30/microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
-    "/Users/orobolaogundipe/.nuget/packages/microsoft.netcore.app.ref/6.0.30/microsoft.netcore.app.ref.6.0.30.nupkg.sha512"
+    "/Users/orobolaogundipe/.nuget/packages/system.security.cryptography.pkcs/8.0.0/system.security.cryptography.pkcs.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }

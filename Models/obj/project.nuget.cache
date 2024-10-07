@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XDwBGhna3Vv/xhg46EBytdf+mhmH5AvwOZuvoryxhSfZ1UE2OKoMnCn7I+5r4VfZmJN6JF6IiOLRCwb2mYZv/Q==",
+  "dgSpecHash": "AAxK8B29D1l8POUEy6Oni7YJtyoT7I87dduVNxKGK9Swh57go3P4/8TYc1L9Y1p1y0akCujkMzB4ZpLA2Euehw==",
   "success": true,
   "projectFilePath": "/Users/orobolaogundipe/Projects/SagaciousTrove/Models/Models.csproj",
   "expectedPackageFiles": [
@@ -142,9 +142,7 @@
     "/Users/orobolaogundipe/.nuget/packages/system.threading.tasks.extensions/4.5.1/system.threading.tasks.extensions.4.5.1.nupkg.sha512",
     "/Users/orobolaogundipe/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/Users/orobolaogundipe/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/Users/orobolaogundipe/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
-    "/Users/orobolaogundipe/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.30/microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
-    "/Users/orobolaogundipe/.nuget/packages/microsoft.netcore.app.ref/6.0.30/microsoft.netcore.app.ref.6.0.30.nupkg.sha512"
+    "/Users/orobolaogundipe/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
